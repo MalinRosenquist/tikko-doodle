@@ -7,8 +7,13 @@ describe('calculateSubStepCost', () => {
     expect(result).toBe(10);
   });
 
-  it('should calculate correct cost at step 5', () => {
-    const result = calculateSubStepCost(10, 1.5, 10);
-    expect(result).toBe(576.650390625);
+  it('should calculate correct cost at step 2 and rounds up', () => {
+    const result = calculateSubStepCost(10, 1.5, 2);
+    expect(result).toBe(23);
+  });
+
+  it('should calculate correct cost at step 9 and rounds down', () => {
+    const result = calculateSubStepCost(10, 1.5, 9);
+    expect(result).toBe(384);
   });
 });
