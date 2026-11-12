@@ -4,7 +4,7 @@ export type SceneId = 'sunflower' | 'tomato' | 'pumpkin';
 export interface SceneConfig {
   name: string;
   clickReward: number;
-  upgradeMultiplier: number;
+  advanceMultiplier: number;
   stages: StageConfig[];
 }
 

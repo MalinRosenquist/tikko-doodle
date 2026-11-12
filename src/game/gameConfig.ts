@@ -7,7 +7,7 @@ export const config: GameConfig = {
     sunflower: {
       name: 'Sunflower',
       clickReward: 1,
-      upgradeMultiplier: 5,
+      advanceMultiplier: 5,
       stages: [
         {
           subStep: { subStepCost: 10, growthFactor: 1.5 },
@@ -29,7 +29,7 @@ export const config: GameConfig = {
     tomato: {
       name: 'Tomato',
       clickReward: 1,
-      upgradeMultiplier: 5,
+      advanceMultiplier: 5,
       stages: [
         {
           subStep: { subStepCost: 10, growthFactor: 1.5 },
@@ -51,7 +51,7 @@ export const config: GameConfig = {
     pumpkin: {
       name: 'Pumpkin',
       clickReward: 1,
-      upgradeMultiplier: 5,
+      advanceMultiplier: 5,
       stages: [
         {
           subStep: { subStepCost: 10, growthFactor: 1.5 },

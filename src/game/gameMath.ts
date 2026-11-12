@@ -2,6 +2,6 @@ export function calculateSubStepCost(baseCost: number, growthFactor: number, ste
   return Math.round(baseCost * Math.pow(growthFactor, step));
 }
 
-export function calculateUpgradeCost(lastSubStepCost: number, upgradeMultiplier: number): number {
-  return Math.round(lastSubStepCost * upgradeMultiplier);
+export function calculateAdvanceCost(lastSubStepCost: number, advanceMultiplier: number): number {
+  return Math.round(lastSubStepCost * advanceMultiplier);
 }
