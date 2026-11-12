@@ -2,7 +2,6 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useGameStore } from '../../src/game/game';
 import { config } from '../../src/game/gameConfig';
-import type { SceneId } from '../../src/types/gameConfig.types';
 
 beforeEach(() => {
   setActivePinia(createPinia());
