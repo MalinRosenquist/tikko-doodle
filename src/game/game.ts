@@ -35,6 +35,7 @@ export const useGameStore = defineStore('game', () => {
       purchasedSubSteps.value,
     );
 
+    // Check if the player has enough coins to purchase the sub-step, if so, deduct the cost and increment the purchased sub-steps
     if (currentCoins.value >= cost) {
       currentCoins.value -= cost;
       purchasedSubSteps.value += 1;
@@ -56,21 +57,23 @@ export const useGameStore = defineStore('game', () => {
       return;
     }
 
+    // Calculate the cost of latest sub-step
     const lastSubStepCost = calculateSubStepCost(
       stage.subStep.subStepCost,
       stage.subStep.growthFactor,
       purchasedSubSteps.value - 1,
     );
 
+    // Calculate the cost of advancing to the next stage
     const advanceCost = calculateAdvanceCost(lastSubStepCost, scene.advanceMultiplier);
-    
+
+    // Check if the player has enough coins to advance, if so, deduct the cost and advance to the next stage
     if (currentCoins.value >= advanceCost) {
       currentCoins.value -= advanceCost;
       purchasedSubSteps.value = 0;
-      currentStage.value +=1;
+      currentStage.value += 1;
     }
   }
-
 
   return {
     playerName,
@@ -80,6 +83,6 @@ export const useGameStore = defineStore('game', () => {
     purchasedSubSteps,
     earnCoins,
     purchaseSubStep,
-    purchaseAdvance
+    purchaseAdvance,
   };
 });
