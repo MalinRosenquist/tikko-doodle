@@ -79,7 +79,7 @@ describe('Game Store', () => {
 
     const maxSubStepsForStage = config.requiredSubSteps[store.currentStage]!;
     store.purchasedSubSteps = maxSubStepsForStage;
-    store.currentCoins = 0; 
+    store.currentCoins = 0;
 
     store.purchaseAdvance();
 
@@ -96,11 +96,11 @@ describe('Game Store', () => {
 
     const stageConfig = config.scenes[store.currentScene].stages[store.currentStage]!;
     const sceneConfig = config.scenes[store.currentScene]!;
-    
+
     const lastSubStepCost = calculateSubStepCost(
       stageConfig.subStep.subStepCost,
       stageConfig.subStep.growthFactor,
-      maxSubStepsForStage - 1
+      maxSubStepsForStage - 1,
     );
     const advanceCost = calculateAdvanceCost(lastSubStepCost, sceneConfig.advanceMultiplier);
 
@@ -110,5 +110,62 @@ describe('Game Store', () => {
     expect(store.currentStage).toBe(1);
     expect(store.purchasedSubSteps).toBe(0);
     expect(store.currentCoins).toBe(0);
+  });
+
+  it('should transition to the next scene when advancing from the last stage', () => {
+    const store = useGameStore();
+
+    store.currentScene = config.sceneOrder[0]!;
+    const lastStageIndex = config.requiredSubSteps.length - 1;
+    store.currentStage = lastStageIndex;
+
+    const maxSubStepsForStage = config.requiredSubSteps[lastStageIndex]!;
+    store.purchasedSubSteps = maxSubStepsForStage;
+
+    const stageConfig = config.scenes[store.currentScene].stages[lastStageIndex]!;
+    const sceneConfig = config.scenes[store.currentScene]!;
+    const lastSubStepCost = calculateSubStepCost(
+      stageConfig.subStep.subStepCost,
+      stageConfig.subStep.growthFactor,
+      maxSubStepsForStage - 1,
+    );
+    const advanceCost = calculateAdvanceCost(lastSubStepCost, sceneConfig.advanceMultiplier);
+
+    store.currentCoins = advanceCost;
+    store.purchaseAdvance();
+
+    expect(store.currentScene).toBe(config.sceneOrder[1]);
+    expect(store.currentStage).toBe(0);
+    expect(store.purchasedSubSteps).toBe(0);
+    expect(store.currentCoins).toBe(0);
+  });
+
+  it('should loop back to the first scene when advancing from the last stage of the last scene', () => {
+    const store = useGameStore();
+
+    const lastSceneIndex = config.sceneOrder.length - 1;
+    store.currentScene = config.sceneOrder[lastSceneIndex]!;
+
+    const lastStageIndex = config.requiredSubSteps.length - 1;
+    store.currentStage = lastStageIndex;
+
+    const maxSubStepsForStage = config.requiredSubSteps[lastStageIndex]!;
+    store.purchasedSubSteps = maxSubStepsForStage;
+
+    const stageConfig = config.scenes[store.currentScene].stages[lastStageIndex]!;
+    const sceneConfig = config.scenes[store.currentScene]!;
+    const lastSubStepCost = calculateSubStepCost(
+      stageConfig.subStep.subStepCost,
+      stageConfig.subStep.growthFactor,
+      maxSubStepsForStage - 1,
+    );
+    const advanceCost = calculateAdvanceCost(lastSubStepCost, sceneConfig.advanceMultiplier);
+
+    store.currentCoins = advanceCost;
+    store.purchaseAdvance();
+
+    expect(store.currentScene).toBe(config.sceneOrder[0]);
+    expect(store.currentStage).toBe(0);
+    expect(store.purchasedSubSteps).toBe(0);
   });
 });

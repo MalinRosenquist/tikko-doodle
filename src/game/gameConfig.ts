@@ -3,6 +3,8 @@ import type { GameConfig } from '../types/gameConfig.types';
 export const config: GameConfig = {
   requiredSubSteps: [5, 10, 15, 20, 25],
 
+  sceneOrder: ['sunflower', 'tomato', 'pumpkin'],
+
   scenes: {
     sunflower: {
       name: 'Sunflower',

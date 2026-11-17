@@ -67,11 +67,36 @@ export const useGameStore = defineStore('game', () => {
     // Calculate the cost of advancing to the next stage
     const advanceCost = calculateAdvanceCost(lastSubStepCost, scene.advanceMultiplier);
 
-    // Check if the player has enough coins to advance, if so, deduct the cost and advance to the next stage
-    if (currentCoins.value >= advanceCost) {
-      currentCoins.value -= advanceCost;
-      purchasedSubSteps.value = 0;
+    // Check if the player has enough coins to advance, if not, return early
+    if (currentCoins.value < advanceCost) {
+      return;
+    }
+
+    currentCoins.value -= advanceCost;
+    purchasedSubSteps.value = 0;
+
+    const isLastStage = currentStage.value === config.requiredSubSteps.length - 1;
+
+    // If the current stage is not the last stage, advance to the next stage
+    if (!isLastStage) {
       currentStage.value += 1;
+      return;
+    }
+
+    const currentSceneIndex = config.sceneOrder.indexOf(currentScene.value);
+    let nextScene = currentSceneIndex + 1;
+
+    // If the next scene index exceeds the length of the scene order, wrap around to the first scene
+    if (nextScene >= config.sceneOrder.length) {
+      nextScene = 0;
+    }
+
+    const nextSceneId = config.sceneOrder[nextScene];
+
+    // If the next scene ID is defined, update the current scene and reset the current stage to 0
+    if (nextSceneId !== undefined) {
+      currentScene.value = nextSceneId;
+      currentStage.value = 0;
     }
   }
 

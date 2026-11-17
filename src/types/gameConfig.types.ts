@@ -18,5 +18,6 @@ export interface StageConfig {
 
 export interface GameConfig {
   requiredSubSteps: number[];
+  sceneOrder: SceneId[];
   scenes: Record<SceneId, SceneConfig>;
 }
