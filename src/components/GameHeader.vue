@@ -1,5 +1,11 @@
+<script setup lang="ts">
+import { useGameStore } from '@/game/game';
+
+const store = useGameStore();
+</script>
+
 <template>
-  <header class="game-header">Header</header>
+  <header class="game-header">Coins: {{ store.currentCoins }}</header>
 </template>
 
 <style scoped>
