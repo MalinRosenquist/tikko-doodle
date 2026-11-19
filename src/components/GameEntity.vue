@@ -14,7 +14,7 @@ const formattedAltText = computed(() => {
 </script>
 
 <template>
-  <button class="game-entity" @click="store.earnCoins()">
+  <button data-testid="entity-button" class="game-entity" @click="store.earnCoins()">
     <img class="game-entity-image" :src="entityImageSrc" :alt="formattedAltText" />
   </button>
 </template>

@@ -5,7 +5,9 @@ const store = useGameStore();
 </script>
 
 <template>
-  <header class="game-header">Coins: {{ store.currentCoins }}</header>
+  <header class="game-header">
+    <span data-testid="coin-display"> Coins: {{ store.currentCoins }} </span>
+  </header>
 </template>
 
 <style scoped>
