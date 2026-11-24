@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { SceneId } from '@/types/gameConfig.types';
 import { config } from '@/game/gameConfig';
-import { calculateSubStepCost, calculateAdvanceCost } from './gameMath';
+import { calculateSubStepCost, calculateAdvanceCost, getNextScene } from './gameMath';
 
 export const useGameStore = defineStore('game', () => {
   const playerName = ref('');
@@ -83,21 +83,8 @@ export const useGameStore = defineStore('game', () => {
       return;
     }
 
-    const currentSceneIndex = config.sceneOrder.indexOf(currentScene.value);
-    let nextScene = currentSceneIndex + 1;
-
-    // If the next scene index exceeds the length of the scene order, wrap around to the first scene
-    if (nextScene >= config.sceneOrder.length) {
-      nextScene = 0;
-    }
-
-    const nextSceneId = config.sceneOrder[nextScene];
-
-    // If the next scene ID is defined, update the current scene and reset the current stage to 0
-    if (nextSceneId !== undefined) {
-      currentScene.value = nextSceneId;
-      currentStage.value = 0;
-    }
+    currentScene.value = getNextScene(currentScene.value, config.sceneOrder);
+    currentStage.value = 0;
   }
 
   return {
