@@ -1,1 +1,7 @@
 @import './reset.css';
+
+:root {
+  --grass-green: rgb(47, 143, 53);
+  --earth-brown: rgb(92, 64, 32);
+  --sun-yellow: rgb(255, 223, 0);
+}
