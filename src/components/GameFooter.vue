@@ -1,20 +1,24 @@
 <script setup lang="ts">
-import { useGameStore } from '@/game/game.ts';
-import BaseButton from './ui/BaseButton.vue';
-const store = useGameStore();
+import ArrowUpIcon from '@/assets/icons/arrow-up.svg';
+import BaseButton from './ui/buttons/BaseButton.vue';
+import ProgressButton from './ui/buttons/ProgressButton.vue';
 </script>
 
 <template>
   <footer class="game-footer">
-    <BaseButton>Ikon</BaseButton>
-    <BaseButton variant="action">{{}}</BaseButton>
-    <BaseButton>Ikon</BaseButton>
+    <BaseButton variant="menu" iconOnly :ariaLabel="'icon'">
+      <ArrowUpIcon />
+    </BaseButton>
+    <ProgressButton />
+    <BaseButton variant="menu" iconOnly :ariaLabel="'icon'">
+      <ArrowUpIcon />
+    </BaseButton>
   </footer>
 </template>
 
 <style scoped>
 .game-footer {
-  background-color: var(--grass-green);
+  background-color: var(--dark-brown);
   padding: 10px;
   text-align: center;
   display: flex;
