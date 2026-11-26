@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useGameStore } from '@/game/game';
-
-const store = useGameStore();
+import CurrencyDisplay from './ui/CurrencyDisplay.vue';
 </script>
 
 <template>
   <header class="game-header">
-    <span data-testid="coin-display"> Coins: {{ store.currentCoins }} </span>
+    <CurrencyDisplay variant="coin" />
+    <CurrencyDisplay variant="clover" />
   </header>
 </template>
 
 <style scoped>
 .game-header {
-  background-color: yellow;
-  padding: 10px;
-  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  background: #9abeec;
+  padding: 1.25rem;
 }
 </style>

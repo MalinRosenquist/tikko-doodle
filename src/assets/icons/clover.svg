@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="31 21 449 449">
+  <defs>
+    <g id="leaf">
+      <path d="M256 256 C216 230 190 190 200 150 C208 116 244 112 256 142 C268 112 304 116 312 150 C322 190 296 230 256 256 Z"
+            fill="#4cc35a" stroke="#1f6b2a" stroke-width="10" stroke-linejoin="round" />
+      <path d="M256 246 L256 160 M256 240 L226 178 M256 240 L286 178"
+            fill="none" stroke="#1f6b2a" stroke-width="6" stroke-linecap="round" />
+    </g>
+  </defs>
+
+  <path d="M256 236 C280 320 290 390 340 452" fill="none" stroke="#1f6b2a" stroke-width="30" stroke-linecap="round" />
+  <path d="M256 236 C280 320 290 390 340 452" fill="none" stroke="#4cc35a" stroke-width="12" stroke-linecap="round" />
+
+  <g transform="translate(256 236) scale(1.5) rotate(25) translate(-256 -256)">
+    <use href="#leaf" />
+    <use href="#leaf" transform="rotate(90 256 256)" />
+    <use href="#leaf" transform="rotate(180 256 256)" />
+    <use href="#leaf" transform="rotate(270 256 256)" />
+  </g>
+</svg>
