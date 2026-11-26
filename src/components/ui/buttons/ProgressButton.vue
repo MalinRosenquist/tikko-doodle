@@ -14,7 +14,7 @@ const gameStore = useGameStore();
     @click="gameStore.purchaseAdvance"
     v-if="gameStore.isReadyToAdvance"
   >
-    <CoinIcon /> {{ gameStore.advanceCost }}</BaseButton
+    <CoinIcon /><span class="button-text"> {{ gameStore.advanceCost }}</span></BaseButton
   >
   <BaseButton
     variant="action"
@@ -23,6 +23,13 @@ const gameStore = useGameStore();
     @click="gameStore.purchaseSubStep"
     v-else
   >
-    <CoinIcon />{{ gameStore.subStepCost }}</BaseButton
+    <CoinIcon /><span class="button-text"> {{ gameStore.subStepCost }}</span></BaseButton
   >
 </template>
+
+<style scoped>
+.button-text {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+}
+</style>

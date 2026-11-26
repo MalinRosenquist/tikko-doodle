@@ -61,4 +61,10 @@ defineProps<{
   width: 50px;
   height: 50px;
 }
+
+.currency-value {
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-brown);
+}
 </style>
